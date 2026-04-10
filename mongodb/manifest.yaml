@@ -29,15 +29,6 @@ spec:
       containers:
       - name: mongodb
         image: manidevops20/mongodb:1.0.0
-        resources:
-          #soft limit
-          requests:
-            memory: "64Mi" #RAM
-            cpu: "100m" #CPU  
-          # hard limit, how much it can go upto
-          limits:
-            memory: "128Mi" #RAM
-            cpu: "150m" #CPU 
 
 ---
 
