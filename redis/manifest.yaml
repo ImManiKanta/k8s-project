@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb
+  name: redis
   namespace: roboshop
   annotations:
-    kubernetes.io/change-cause: "initial deployment mongodb:1.0.0"
+    kubernetes.io/change-cause: "initial deployment redis:7.0"
   # these labels are replicaset labels
   labels:
     project: roboshop
     tier: db
-    component: mongodb
+    component: redis
 spec:
   replicas: 1
   selector:
@@ -17,19 +17,18 @@ spec:
     matchLabels:
       project: roboshop
       tier: db
-      component: mongodb
+      component: redis
   # This is pod definition, pod is subset of replica set
   template:
     metadata:
       labels:
         project: roboshop
         tier: db
-        component: mongodb
+        component: redis
     spec:
       containers:
-      - name: mongodb
-        image: manidevops20/mongodb:1.0.0
-        imagePullPolicy: Always # safe to pull everytime, there may be images with same version rebuilt and pushed
+      - name: redis
+        image: redis:7.0
 
 ---
 
@@ -37,19 +36,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb
+  name: redis
   namespace: roboshop
   labels:
     project: roboshop
     tier: db
-    component: mongodb
+    component: redis
 spec:
   selector:
     # labels are used as selectors
     project: roboshop
     tier: db
-    component: mongodb
+    component: redis
   ports:
   - protocol: TCP
-    port: 27017 #service port
-    targetPort: 27017  #container port
+    port: 6379 #service port
+    targetPort: 6379  #container port
