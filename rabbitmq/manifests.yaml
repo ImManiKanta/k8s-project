@@ -38,7 +38,9 @@ spec:
       containers:
       - name: rabbitmq
         image: rabbitmq:3
-        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: rabbitmq
 ---
 
 apiVersion: v1
