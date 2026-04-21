@@ -22,13 +22,18 @@ metadata:
     tier: backend
     component: shipping
 spec:
-  repicas: 1
+  replicas: 1
   selector:
     matchLabels:
       project: roboshop
       tier: backend
       component: shipping
   template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: backend
+        component: shipping
     spec:
       containers:
       - name: shipping
