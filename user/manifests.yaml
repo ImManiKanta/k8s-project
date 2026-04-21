@@ -32,10 +32,10 @@ spec:
    # This is pod definition, pod is subset of replica set
   template:
     metadata:
-    labels:
-      project: roboshop
-      tier: backend
-      component: user
+      labels:
+        project: roboshop
+        tier: backend
+        component: user
     spec:
       containers: 
       - name: user
