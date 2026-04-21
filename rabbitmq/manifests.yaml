@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: rabbitmq
@@ -30,10 +30,10 @@ spec:
       component: rabbitmq
   template:
     metadata:
-    labels:
-      project: roboshop
-      tier: db
-      component: rabbitmq
+      labels:
+        project: roboshop
+        tier: db
+        component: rabbitmq
     spec:
       containers:
       - name: rabbitmq
