@@ -50,20 +50,21 @@ spec:
           httpGet:
             path: /health
             port: 8080
-          failureThreshold: 3
+          failureThreshold: 6
           periodSeconds: 10
+          initialDelaySeconds: 240
         readinessProbe:
           tcpSocket: 
             port: 8080
           failureThreshold: 2
-          initialDelaySeconds: 120
+          initialDelaySeconds: 60
           periodSeconds: 10
         livenessProbe:
           httpGet:
             path: /health
             port: 8080
           failureThreshold: 2
-          initialDelaySeconds: 120
+          initialDelaySeconds: 10
           periodSeconds: 10
         envFrom:
         - configMapRef:
